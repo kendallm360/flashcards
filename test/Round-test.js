@@ -11,7 +11,6 @@ describe("Round", () => {
   let card3;
   let deck;
   let round;
-  let currentCard;
   beforeEach(() => {
     card1 = new Card(
       30,
@@ -26,19 +25,13 @@ describe("Round", () => {
       "true"
     );
     card3 = new Card(
-      28,
-      "Which prototype method returns an array of an object's property values?",
-      ["Object.keys()", "Object.values()", "Object.assign()"],
-      "Object.values()"
-    );
-    card3 = new Card(
       27,
       "Accessor methods permanently modify the original array, mutator methods do not.",
       ["true", "false"],
       "false"
     );
     deck = new Deck([card1, card2, card3]);
-    round = new Round();
+    round = new Round(deck);
   });
 
   it("Should be a function", () => {
@@ -47,5 +40,45 @@ describe("Round", () => {
 
   it("Should be an instance of Round", () => {
     expect(round).to.be.an.instanceOf(Round);
+  });
+
+  it("Should have a method that returns the current card", () => {
+    //addtest here for when a turn has been taken
+    expect(round.returnCurrentCard()).to.equal(card1);
+  });
+
+  //add sad path test for no turns taken
+  it("Should have a method that updates amount of turns taken", () => {
+    round.takeTurn("steve");
+    expect(round.turns).to.equal(1);
+  });
+
+  it("Should have a method that evaluates the user's guess", () => {
+    expect(round.takeTurn("object")).to.equal("incorrect!");
+  });
+
+  //add happy path test for correct answer
+  it("Should have a method that gives feedback", () => {
+    expect(round.takeTurn("object")).to.equal("incorrect!");
+  });
+
+  it("Should have a method that stores ids", () => {
+    round.takeTurn("object");
+    expect(round.incorrectGuesses).to.deep.equal([30]);
+  });
+
+  it("Should not store card ids of correct guesses", () => {
+    round.takeTurn("prototype method");
+    expect(round.incorrectGuesses).to.deep.equal([]);
+  });
+
+  it("Should have a method that calculates percent correct", () => {
+    round.takeTurn("object");
+    console.log(round.currentCard.id, "1");
+    round.takeTurn("false");
+    console.log(round.currentCard.id, "2");
+    round.takeTurn("false");
+    console.log(round.currentCard.id, "3");
+    expect(round.calculatePercentCorrect()).to.equal(33);
   });
 });

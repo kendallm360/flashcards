@@ -43,7 +43,7 @@ describe("Round", () => {
   });
 
   it("Should have a method that returns the current card", () => {
-    //addtest here for when a turn has been taken
+    //add test here for when a turn has been taken
     expect(round.returnCurrentCard()).to.equal(card1);
   });
 
@@ -73,12 +73,23 @@ describe("Round", () => {
   });
 
   it("Should have a method that calculates percent correct", () => {
+    console.log(round.currentCard.id, "0");
+    console.log(round.turns, "0 turns");
     round.takeTurn("object");
     console.log(round.currentCard.id, "1");
+    console.log(round.turns, "1 turn");
     round.takeTurn("false");
     console.log(round.currentCard.id, "2");
+    console.log(round.turns, "2 turns");
     round.takeTurn("false");
     console.log(round.currentCard.id, "3");
+    console.log(round.turns, "3 turns");
     expect(round.calculatePercentCorrect()).to.equal(33);
+  });
+
+  it("Should have a method that informs the use when the round is over", () => {
+    expect(round.endRound()).to.equal(
+      "** Round over! ** You answered % of the questions correctly!"
+    );
   });
 });

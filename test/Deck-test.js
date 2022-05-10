@@ -3,7 +3,7 @@ const chai = require("chai");
 const expect = chai.expect;
 
 const Card = require("../src/Card");
-const Deck = require("../src/Card");
+const Deck = require("../src/Deck");
 
 describe("Deck", () => {
   let card1;
@@ -39,5 +39,19 @@ describe("Deck", () => {
     deck = new Deck([card1, card2, card3]);
   });
 
-  //   it("Should know how many cards are in the deck", () => {});
+  it("Should be a function", () => {
+    expect(Deck).to.be.a("function");
+  });
+
+  it("Should be an instance of Deck", () => {
+    expect(deck).to.be.an.instanceOf(Deck);
+  });
+
+  it("Should hold an array of cards", () => {
+    expect(deck.cards).to.be.a("array");
+  });
+
+  it("Should know how many cards are in the deck", () => {
+    expect(deck.countCards()).to.equal(3);
+  });
 });

@@ -13,8 +13,8 @@ class Round {
   }
 
   takeTurn(usersAnswer) {
-    this.turns++;
     const currentTurn = new Turn(usersAnswer, this.returnCurrentCard());
+    this.turns++;
     if (usersAnswer !== currentTurn.card.correctAnswer) {
       this.incorrectGuesses.push(currentTurn.card.id);
     }

@@ -1,51 +1,44 @@
 const chai = require("chai");
 const expect = chai.expect;
 
-const Card = require("../src/Card");
-const Deck = require("../src/Deck");
 const Round = require("../src/Round");
 const Game = require("../src/Game");
+const data = require("../src/data");
 
-describe("Round", () => {
-  let card1;
-  let card2;
-  let card3;
-  let deck;
-  let round;
+describe("Game", () => {
   let game;
-
   beforeEach(() => {
-    card1 = new Card(
-      30,
-      "What type of methods are functions that allow you to manipulate the value of a particular data type or class?",
-      ["prototype method", "object", "callback function"],
-      "prototype method"
-    );
-    card2 = new Card(
-      29,
-      "map() takes in two optional arguments: the index of the current element, and the array that map was called upon",
-      ["true", "false"],
-      "true"
-    );
-    card3 = new Card(
-      27,
-      "Accessor methods permanently modify the original array, mutator methods do not.",
-      ["true", "false"],
-      "false"
-    );
-    deck = new Deck([card1, card2, card3]);
-    round = new Round(deck);
+    game = new Game();
   });
 
   it("Should be a function", () => {
     expect(Game).to.be.a("function");
   });
 
-  it("Should be an instance of Deck", () => {
+  it("Should be an instance of Game", () => {
     expect(game).to.be.an.instanceOf(Game);
   });
 
   it("Should keep track of current round", () => {
-    expect(game.currentRound).to.equal(round);
+    game.startLite();
+    expect(game.currentRound).to.an.instanceOf(Round);
+  });
+
+  it("Should have a method that creates a new instance of Deck", () => {
+    game.startLite();
+    expect(game.currentRound.deck).to.exist;
+  });
+
+  it("should use the start method to create instances of Card", () => {
+    game.startLite();
+    expect(game.currentRound.deck.cards[0]).to.deep.equal(
+      data.prototypeData[0]
+    );
+    expect(game.currentRound.deck.cards[7]).to.deep.equal(
+      data.prototypeData[7]
+    );
+    expect(game.currentRound.deck.cards.length).to.equal(
+      data.prototypeData.length
+    );
   });
 });

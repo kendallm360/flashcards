@@ -72,24 +72,19 @@ describe("Round", () => {
     expect(round.incorrectGuesses).to.deep.equal([]);
   });
 
-  it.skip("Should have a method that calculates percent correct", () => {
-    // console.log(round.currentCard.id, "0");
-    // console.log(round.turns, "0 turns");
+  it("Should have a method that calculates percent correct", () => {
     round.takeTurn("object");
-    console.log(round.currentCard.id, "1");
-    console.log(round.turns, "1 turn");
     round.takeTurn("false");
-    console.log(round.currentCard.id, "2");
-    console.log(round.turns, "2 turns");
     round.takeTurn("false");
-    console.log(round.currentCard.id, "3");
-    console.log(round.turns, "3 turns");
     expect(round.calculatePercentCorrect()).to.equal(33);
   });
 
-  it.skip("Should have a method that informs the user when the round is over", () => {
+  it("Should have a method that informs the user when the round is over", () => {
+    round.takeTurn("object");
+    round.takeTurn("false");
+    round.takeTurn("false");
     expect(round.endRound()).to.equal(
-      "** Round over! ** You answered % of the questions correctly!"
+      "** Round over! ** You answered 33% of the questions correctly!"
     );
   });
 });

@@ -5,11 +5,10 @@ class Round {
     this.deck = deck;
     this.turns = 0;
     this.incorrectGuesses = [];
-    this.currentCard = this.deck.cards[this.turns];
   }
 
   returnCurrentCard() {
-    return this.currentCard;
+    return this.deck.cards[this.turns];
   }
 
   takeTurn(usersAnswer) {
@@ -24,11 +23,11 @@ class Round {
   calculatePercentCorrect() {
     let average =
       ((this.turns - this.incorrectGuesses.length) / this.turns) * 100;
-    return average;
+    return Math.round(average);
   }
 
   endRound() {
-    let string = `** Round over! ** You answered ${this.turns}% of the questions correctly!`;
+    let string = `** Round over! ** You answered ${this.calculatePercentCorrect()}% of the questions correctly!`;
     return string;
   }
 }

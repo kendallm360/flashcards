@@ -73,8 +73,8 @@ describe("Round", () => {
   });
 
   it.skip("Should have a method that calculates percent correct", () => {
-    console.log(round.currentCard.id, "0");
-    console.log(round.turns, "0 turns");
+    // console.log(round.currentCard.id, "0");
+    // console.log(round.turns, "0 turns");
     round.takeTurn("object");
     console.log(round.currentCard.id, "1");
     console.log(round.turns, "1 turn");

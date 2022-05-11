@@ -1,5 +1,3 @@
-const Card = require("./Card");
-
 class Turn {
   constructor(guess, card) {
     this.guess = guess;

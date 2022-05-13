@@ -43,11 +43,9 @@ describe("Round", () => {
   });
 
   it("Should have a method that returns the current card", () => {
-    //add test here for when a turn has been taken
     expect(round.returnCurrentCard()).to.equal(card1);
   });
 
-  //add sad path test for no turns taken
   it("Should have a method that updates amount of turns taken", () => {
     round.takeTurn("steve");
     expect(round.turns).to.equal(1);
@@ -57,7 +55,6 @@ describe("Round", () => {
     expect(round.takeTurn("object")).to.equal("incorrect!");
   });
 
-  //add happy path test for correct answer
   it("Should have a method that gives feedback", () => {
     expect(round.takeTurn("object")).to.equal("incorrect!");
   });

@@ -27,8 +27,10 @@ class Round {
   }
 
   endRound() {
-    let string = `** Round over! ** You answered ${this.calculatePercentCorrect()}% of the questions correctly!`;
-    return string;
+    return console.log(
+      `** Round over! ** You answered ${this.calculatePercentCorrect()}% of the questions correctly!`
+    );
+    // return string;
   }
 }
 
